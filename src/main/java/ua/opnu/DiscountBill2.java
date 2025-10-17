@@ -2,28 +2,28 @@ package ua.opnu;
 
 import ua.opnu.java.inheritance.bill.*;
 
-public class DiscountBill extends GroceryBill {
+public class DiscountBill2 {
+    private GroceryBill bill;
+
     private final boolean regularCustomer;
     private int discountCount;
     private double discountAmount;
 
-    public DiscountBill(Employee clerk, boolean is_regular_customer) {
-        super(clerk);
+    public DiscountBill2(Employee clerk, boolean is_regular_customer) {
+        this.bill = new GroceryBill(clerk);
         this.regularCustomer = is_regular_customer;
     }
 
-    @Override
     public void add(Item item) {
-        super.add(item);
+        bill.add(item);
         if (regularCustomer && item.getDiscount() > 0.0) {
             discountCount++;
             discountAmount += item.getDiscount();
         }
     }
 
-    @Override
     public double getTotal() {
-        double total = super.getTotal();
+        double total = bill.getTotal();
         if (regularCustomer) {
             total -= discountAmount;
         }
@@ -34,13 +34,15 @@ public class DiscountBill extends GroceryBill {
         return regularCustomer ? discountCount : 0;
     }
 
+    public Employee getClerk() { return bill.getClerk(); }
+
     public double getDiscountAmount() {
         return regularCustomer ? discountAmount : 0.0;
     }
 
     public double getDiscountPercent() {
         if (!regularCustomer) return 0.0;
-        double totalWithoutDiscount = super.getTotal();
-        return 100 - (getTotal() * 100 / totalWithoutDiscount);
+        double totalWithoutDiscount = bill.getTotal();
+        return (discountAmount / totalWithoutDiscount) * 100.0;
     }
 }
