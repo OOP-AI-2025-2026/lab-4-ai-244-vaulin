@@ -6,6 +6,8 @@ import ua.opnu.java.inheritance.account.Startup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import ua.opnu.MinMaxAccount;
+
 public class Task2Test {
 
     @Nested

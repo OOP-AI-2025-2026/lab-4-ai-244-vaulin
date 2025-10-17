@@ -5,6 +5,8 @@ import ua.opnu.java.inheritance.bill.Item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import ua.opnu.DiscountBill2;
+
 public class Task4Test {
 
     @Nested
